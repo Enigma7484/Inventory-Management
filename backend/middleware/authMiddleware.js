@@ -4,7 +4,6 @@ const jwt = require("jsonwebtoken");
 
 const protect = asyncHandler(async (req, res, next) => {
   try {
-    console.log(req.cookie)
     const token = req.cookies.token;
     if (!token) {
       res.status(401);
