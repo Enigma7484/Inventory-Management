@@ -93,7 +93,7 @@ const loginUser = asyncHandler(async (req, res) => {
         httpOnly: true,
         expires: new Date(Date.now() + 1000 * 86400), // 1 day
         sameSite: "None",
-        secure: false
+        secure: true
     });
 
     if (user && passwordIsCorrect) {
@@ -115,7 +115,7 @@ const logout = asyncHandler(async (req, res) => {
         httpOnly: true,
         expires: new Date(0),
         sameSite: "None",
-        secure: false
+        secure: true
     });
     return res.status(200).json({ message: "Successfully Logged Out" });
 });
@@ -143,6 +143,7 @@ const getUser = asyncHandler(async (req, res) => {
 const loginStatus = asyncHandler(async (req, res) => {
 
     const token = req.cookies.token;
+
     if (!token) {
         return res.json(false);
     }
