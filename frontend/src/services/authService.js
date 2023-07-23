@@ -77,7 +77,42 @@ export const resetPassword = async (userData, resetToken) => {
 export const getLoginStatus = async () => {
     try {
         const response = await axios.get(`${BACKEND_URL}/api/users/loggedin`);
-        console.log(response);
+        return response.data;
+    } catch (err) {
+        const message = (err.response && err.response.data && err.response.data.message)
+            || err.message || err.toString();
+        toast.error(message);
+    }
+};
+
+// Get User Profile
+export const getUser = async () => {
+    try {
+        const response = await axios.get(`${BACKEND_URL}/api/users/getuser`);
+        return response.data;
+    } catch (err) {
+        const message = (err.response && err.response.data && err.response.data.message)
+            || err.message || err.toString();
+        toast.error(message);
+    }
+};
+
+// Update Profile
+export const updateUser = async (formData) => {
+    try {
+        const response = await axios.patch(`${BACKEND_URL}/api/users/updateuser`, formData);
+        return response.data;
+    } catch (err) {
+        const message = (err.response && err.response.data && err.response.data.message)
+            || err.message || err.toString();
+        toast.error(message);
+    }
+};
+
+// Change Password
+export const changePassword = async (formData) => {
+    try {
+        const response = await axios.patch(`${BACKEND_URL}/api/users/changepassword`, formData);
         return response.data;
     } catch (err) {
         const message = (err.response && err.response.data && err.response.data.message)

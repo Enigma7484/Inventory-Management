@@ -15,7 +15,7 @@ const menu = [
   {
     title: "Account",
     icon: <FaRegChartBar />,
-    childrens: [
+    children: [
       {
         title: "Profile",
         path: "/profile",
