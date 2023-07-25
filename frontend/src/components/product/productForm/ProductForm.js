@@ -26,10 +26,10 @@ const ProductForm = ({ product, productImage, imagePreview, description, setDesc
           <input type="text" placeholder="Product Category" name="category" value={product?.category} onChange={handleInputChange} />
 
           <label>Product Price:</label>
-          <input type="text" placeholder="Product Price" name="price" value={product?.price} onChange={handleInputChange} />
+          <input type="number" placeholder="Product Price" name="price" value={product?.price} onChange={handleInputChange} />
 
           <label>Product Quantity:</label>
-          <input type="text" placeholder="Product Quantity" name="quantity" value={product?.quantity} onChange={handleInputChange} />
+          <input type="number" placeholder="Product Quantity" name="quantity" value={product?.quantity} onChange={handleInputChange} />
 
           <label>Product Description:</label>
           <ReactQuill theme="snow" value={description} onChange={setDescription} modules={ProductForm.modules} formats={ProductForm.formats} />
