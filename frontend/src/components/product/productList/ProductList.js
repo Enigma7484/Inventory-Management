@@ -3,6 +3,7 @@ import "./productList.scss";
 import { SpinnerImg } from "../../loader/Loader";
 import { FaEdit, FaTrashAlt } from "react-icons/fa";
 import { AiOutlineEye } from "react-icons/ai";
+import { FiPlus } from "react-icons/fi";
 import Search from '../../search/Search';
 import { useSelector } from "react-redux";
 import { useDispatch } from 'react-redux';
@@ -63,6 +64,7 @@ const ProductList = ({ products, isLoading }) => {
     }, [itemOffset, itemsPerPage, filteredProducts]);
 
     const handlePageClick = (event) => {
+        if (filteredProducts.length === 0) return;
         const newOffset = (event.selected * itemsPerPage) % filteredProducts.length;
         setItemOffset(newOffset);
     };
@@ -74,27 +76,32 @@ const ProductList = ({ products, isLoading }) => {
 
     return (
         <div className="product-list">
-            <hr />
-            <div className="table">
-                <div className="--flex-between --flex-dir-column">
-                    <span>
+            <div className="table inventory-panel">
+                <div className="table-toolbar">
+                    <div>
+                        <span className="page-kicker">Catalog</span>
                         <h3>Inventory Items</h3>
-                    </span>
-                    <span>
+                        <p>{filteredProducts.length} matching items in your current view.</p>
+                    </div>
+                    <div className="table-actions">
                         <Search value={search} onChange={(e) => setSearch(e.target.value)} />
-                    </span>
+                        <Link className="--btn --btn-primary" to="/add-product">
+                            <FiPlus />
+                            Add Product
+                        </Link>
+                    </div>
                 </div>
 
                 {isLoading && <SpinnerImg />}
 
-                <div className="table">
+                <div className="table-scroll">
                     {!isLoading && products.length === 0 ? (
-                        <p>-- No product found, please add a product...</p>
+                        <p className="empty-state">No products yet. Add your first item to start tracking inventory.</p>
                     ) : (
                         <table>
                             <thead>
                                 <tr>
-                                    <th>s/n</th>
+                                    <th>S/N</th>
                                     <th>Name</th>
                                     <th>Category</th>
                                     <th>Price</th>
@@ -110,25 +117,27 @@ const ProductList = ({ products, isLoading }) => {
                                         const { _id, name, category, price, quantity } = product;
                                         return (
                                             <tr key={_id}>
-                                                <td>{index + 1}</td>
-                                                <td>{shortenText(name, 16)}</td>
+                                                <td>{itemOffset + index + 1}</td>
+                                                <td className="item-name">{shortenText(name, 22)}</td>
                                                 <td>{category}</td>
                                                 <td>{"$"}{price}</td>
                                                 <td>{quantity}</td>
                                                 <td>{"$"}{price * quantity}</td>
                                                 <td className="icons">
-                                                    <span>
-                                                        <Link to={`/product-detail/${_id}`}>
-                                                            <AiOutlineEye size={25} color="purple" />
+                                                    <span title="View product">
+                                                        <Link aria-label={`View ${name}`} to={`/product-detail/${_id}`}>
+                                                            <AiOutlineEye />
                                                         </Link>
                                                     </span>
-                                                    <span>
-                                                        <Link to={`/edit-product/${_id}`}>
-                                                            <FaEdit size={25} color="green" />
+                                                    <span title="Edit product">
+                                                        <Link aria-label={`Edit ${name}`} to={`/edit-product/${_id}`}>
+                                                            <FaEdit />
                                                         </Link>
                                                     </span>
-                                                    <span>
-                                                        <FaTrashAlt size={25} color="red" onClick={() => confirmDelete(_id)} />
+                                                    <span title="Delete product">
+                                                        <button aria-label={`Delete ${name}`} type="button" onClick={() => confirmDelete(_id)}>
+                                                            <FaTrashAlt />
+                                                        </button>
                                                     </span>
                                                 </td>
                                             </tr>

@@ -30,8 +30,10 @@ const AddProduct = () => {
     };
 
     const handleImageChange = (e) => {
-        setProductImage(e.target.files[0]);
-        setImagePreview(URL.createObjectURL(e.target.files[0]));
+        const file = e.target.files?.[0];
+        if (!file) return;
+        setProductImage(file);
+        setImagePreview(URL.createObjectURL(file));
     };
 
     const generateSKU = (category) => {
@@ -63,7 +65,13 @@ const AddProduct = () => {
     return (
         <div>
             {isLoading && <Loader />}
-            <h3 className="--mt">Add New Product</h3>
+            <div className="page-title-row">
+                <div>
+                    <span className="page-kicker">Catalog setup</span>
+                    <h3>Add New Product</h3>
+                    <p>Create a product record with stock, price, and a visual reference.</p>
+                </div>
+            </div>
             <ProductForm
                 product={product}
                 productImage={productImage}

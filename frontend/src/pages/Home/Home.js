@@ -1,5 +1,6 @@
 import React from "react";
 import { RiProductHuntLine } from "react-icons/ri";
+import { FiArrowRight, FiCheckCircle } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import "./Home.scss";
 import heroImg from "../../assets/inv-img.png";
@@ -11,6 +12,7 @@ const Home = () => {
       <nav className="container --flex-between ">
         <div className="logo">
           <RiProductHuntLine size={35} />
+          <span>Stockroom</span>
         </div>
 
         <ul className="home-links">
@@ -21,42 +23,48 @@ const Home = () => {
           </ShowOnLogout>
           <ShowOnLogout>
             <li>
-              <button className="--btn --btn-primary">
-                <Link to="/login">Login</Link>
-              </button>
+              <Link className="home-button" to="/login">Login</Link>
             </li>
           </ShowOnLogout>
           <ShowOnLogin>
             <li>
-              <button className="--btn --btn-primary">
-                <Link to="/dashboard">Dashboard</Link>
-              </button>
+              <Link className="home-button" to="/dashboard">Dashboard</Link>
             </li>
           </ShowOnLogin>
         </ul>
       </nav>
-      {/* HERO SECTION */}
       <section className="container hero">
+        <img className="hero-product" src={heroImg} alt="Inventory dashboard preview" />
         <div className="hero-text">
-          <h2>Inventory {"&"} Stock Management Solution</h2>
+          <p className="hero-eyebrow">Inventory command center</p>
+          <h1>Inventory {"&"} Stock Management</h1>
           <p>
-            Inventory system to control and manage proucts in the warehouse in
-            real timeand integrated to make it easier to develop your business.
+            Track products, stock levels, categories, and warehouse value from one
+            focused dashboard built for day-to-day operators.
           </p>
           <div className="hero-buttons">
-            <button className="--btn --btn-secondary">
-              <Link to="/dashboard">Free Trial 1 Month</Link>
-            </button>
+            <Link className="home-button home-button--light" to="/dashboard">
+              Open Dashboard
+              <FiArrowRight />
+            </Link>
           </div>
-          <div className="--flex-start">
+          <div className="hero-proof">
             <NumberText num="14K" text="Brand Owners" />
             <NumberText num="23K" text="Active Users" />
             <NumberText num="500+" text="Partners" />
           </div>
+          <div className="hero-checks">
+            <span><FiCheckCircle /> Stock alerts</span>
+            <span><FiCheckCircle /> Product images</span>
+            <span><FiCheckCircle /> Value tracking</span>
+          </div>
         </div>
-
-        <div className="hero-image">
-          <img src={heroImg} alt="Inventory" />
+      </section>
+      <section className="home-strip">
+        <div className="container">
+          <span>Dashboard-ready summaries</span>
+          <span>Secure account flows</span>
+          <span>Fast product search</span>
         </div>
       </section>
     </div>

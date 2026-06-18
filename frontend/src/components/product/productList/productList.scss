@@ -1,61 +1,148 @@
 .product-list {
-    color: #333;
-    .table {
-      padding: 5px;
-      width: 100%;
-      overflow-x: auto;
-  
-      .search {
-        width: 100%;
-        max-width: 300px;
-      }
-  
-      table {
-        border-collapse: collapse;
-        width: 100%;
-        font-size: 1.4rem;
-  
-        thead {
-          border-top: 2px solid var(--light-blue);
-          border-bottom: 2px solid var(--light-blue);
-        }
-  
-        th {
-          border: 1px solid #eee;
-        }
-  
-        th,
-        td {
-          vertical-align: top;
-          text-align: left;
-          padding: 8px;
-  
-          &.icons {
-            display: flex;
-            justify-content: flex-start;
-            align-items: center;
-            > * {
-              margin-right: 7px;
-              cursor: pointer;
-              vertical-align: middle;
-              align-self: center;
-            }
-          }
-        }
-  
-        tr {
-          border-bottom: 1px solid #ccc;
-        }
-  
-        tr:nth-child(even) {
-          background-color: #fff;
-        }
-        tbody {
-          tr:hover {
-            cursor: pointer;
-            background-color: rgba(31, 147, 255, 0.3);
-          }
-        }
-      }
-    }
+  color: var(--color-dark);
+  margin-top: 1.6rem;
+}
+
+.inventory-panel {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 16px 36px rgba(15, 23, 42, 0.06);
+  overflow: hidden;
+  width: 100%;
+}
+
+.table-toolbar {
+  align-items: center;
+  border-bottom: 1px solid var(--color-border);
+  display: flex;
+  gap: 1.6rem;
+  justify-content: space-between;
+  padding: 1.8rem;
+
+  h3,
+  p {
+    margin-bottom: 0;
   }
+
+  p {
+    color: var(--color-muted);
+    font-size: 1.4rem;
+  }
+}
+
+.table-actions {
+  align-items: center;
+  display: flex;
+  flex: 0 1 52rem;
+  gap: 1rem;
+  justify-content: flex-end;
+
+  .search {
+    max-width: 32rem;
+  }
+}
+
+.table-scroll {
+  overflow-x: auto;
+  width: 100%;
+}
+
+.product-list table {
+  border-collapse: collapse;
+  font-size: 1.4rem;
+  min-width: 760px;
+  width: 100%;
+}
+
+.product-list thead {
+  background: var(--color-surface-soft);
+}
+
+.product-list th,
+.product-list td {
+  border-bottom: 1px solid var(--color-border);
+  padding: 1.3rem 1.6rem;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.product-list th {
+  color: var(--color-muted);
+  font-size: 1.2rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.product-list tbody tr {
+  transition: background-color 0.15s ease;
+}
+
+.product-list tbody tr:hover {
+  background-color: #f8fbff;
+}
+
+.product-list .item-name {
+  color: var(--color-dark);
+  font-weight: 700;
+}
+
+.product-list td.icons {
+  align-items: center;
+  display: flex;
+  gap: 0.6rem;
+}
+
+.product-list td.icons a,
+.product-list td.icons button {
+  align-items: center;
+  background: #fff;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  color: var(--color-muted);
+  cursor: pointer;
+  display: flex;
+  height: 3.4rem;
+  justify-content: center;
+  padding: 0;
+  width: 3.4rem;
+}
+
+.product-list td.icons a:hover,
+.product-list td.icons button:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+.product-list td.icons span:last-child button:hover {
+  border-color: var(--color-danger);
+  color: var(--color-danger);
+}
+
+.product-list td.icons svg {
+  height: 1.7rem;
+  width: 1.7rem;
+}
+
+.empty-state {
+  color: var(--color-muted);
+  padding: 2rem;
+}
+
+@media screen and (max-width: 860px) {
+  .table-toolbar {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .table-actions {
+    align-items: stretch;
+    flex-direction: column;
+    flex: 1;
+    width: 100%;
+  }
+
+  .table-actions .search {
+    max-width: 100%;
+  }
+}

@@ -29,6 +29,13 @@ const Profile = () => {
 
     return (
         <div className="profile --my2">
+            <div className="page-title-row">
+                <div>
+                    <span className="page-kicker">Account</span>
+                    <h3>Profile</h3>
+                    <p>Keep your personal details current for the inventory workspace.</p>
+                </div>
+            </div>
             {isLoading && <SpinnerImg />}
             <>
                 {!isLoading && profile === null ? (

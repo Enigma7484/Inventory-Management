@@ -1,27 +1,41 @@
 .product-summary {
-    width: 100%;
-    .info-summary {
-      display: flex;
-      flex-wrap: wrap;
-    }
+  width: 100%;
+
+  .info-summary {
+    display: grid;
+    gap: 1.4rem;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
   }
-  
-  .card {
-    border: 1px solid #ccc;
-    // border-bottom: 3px solid var(--light-blue);
-    padding: 5px;
-    background-color: #f5f6fa;
+}
+
+.card1 {
+  --metric-accent: #2563eb;
+  --metric-soft: #dbeafe;
+}
+
+.card2 {
+  --metric-accent: #0f9f6e;
+  --metric-soft: #d1fae5;
+}
+
+.card3 {
+  --metric-accent: #dc2626;
+  --metric-soft: #fee2e2;
+}
+
+.card4 {
+  --metric-accent: #7c3aed;
+  --metric-soft: #ede9fe;
+}
+
+@media screen and (max-width: 1040px) {
+  .product-summary .info-summary {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
-  
-  .card1 {
-    background-color: #b624ff;
+}
+
+@media screen and (max-width: 560px) {
+  .product-summary .info-summary {
+    grid-template-columns: 1fr;
   }
-  .card2 {
-    background-color: #32963d;
-  }
-  .card3 {
-    background-color: #c41849;
-  }
-  .card4 {
-    background-color: #03a5fc;
-  }
+}

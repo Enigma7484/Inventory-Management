@@ -29,7 +29,13 @@ const Contact = () => {
 
     return (
         <div className="contact">
-            <h3 className="--mt">Contact Us</h3>
+            <div className="page-title-row">
+                <div>
+                    <span className="page-kicker">Support</span>
+                    <h3>Contact Us</h3>
+                    <p>Send a bug report or request help with the inventory workspace.</p>
+                </div>
+            </div>
             <div className="section">
                 <form onSubmit={sendEmail}>
                     <Card cardClass="card">

@@ -38,7 +38,9 @@ const EditProfile = () => {
     };
 
     const handleImageChange = (e) => {
-        setProfileImage(e.target.files[0])
+        const file = e.target.files?.[0];
+        if (!file) return;
+        setProfileImage(file)
     };
 
     const saveProfile = async (e) => {
@@ -92,6 +94,13 @@ const EditProfile = () => {
     return (
         <div className="profile --my2">
             {isLoading && <Loader />}
+            <div className="page-title-row">
+                <div>
+                    <span className="page-kicker">Account settings</span>
+                    <h3>Edit Profile</h3>
+                    <p>Update your contact details, profile image, and account password.</p>
+                </div>
+            </div>
             <Card cardClass={"card --flex-dir-column"}>
                 <span className="profile-photo">
                     <img src={user?.photo} alt="profilepic" />
@@ -100,21 +109,21 @@ const EditProfile = () => {
                     <span className="profile-data">
                         <p>
                             <label>Name:</label>
-                            <input type="text" name="name" value={profile?.name} onChange={handleInputChange} />
+                            <input type="text" name="name" value={profile?.name || ""} onChange={handleInputChange} />
                         </p>
                         <p>
                             <label>Email:</label>
-                            <input type="text" name="email" value={profile?.email} disabled />
+                            <input type="text" name="email" value={profile?.email || ""} disabled />
                         </p>
                         <br />
                         <code>Email cannot be changed.</code>
                         <p>
                             <label>Phone:</label>
-                            <input type="text" name="phone" value={profile?.phone} onChange={handleInputChange} />
+                            <input type="text" name="phone" value={profile?.phone || ""} onChange={handleInputChange} />
                         </p>
                         <p>
                             <label>Bio:</label>
-                            <textarea name="bio" value={profile?.bio} onChange={handleInputChange} cols="30" rows="10"></textarea>
+                            <textarea name="bio" value={profile?.bio || ""} onChange={handleInputChange} cols="30" rows="10"></textarea>
                         </p>
                         <p>
                             <label>Photo:</label>

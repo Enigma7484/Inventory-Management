@@ -17,23 +17,24 @@ const Sidebar = ({ children }) => {
     };
 
     return (
-        <div className="layout">
-            <div className="sidebar" style={{ width: isOpen ? "230px" : "60px" }}>
+        <div className={isOpen ? "layout sidebar-open" : "layout sidebar-closed"}>
+            <aside className="sidebar">
 
                 <div className="top_section">
-                    <div className="logo" style={{ display: isOpen ? "block" : "none" }}>
+                    <div className="logo">
                         <RiProductHuntLine size={35} style={{ cursor: "pointer" }} onClick={goHome} />
+                        {isOpen && <span>Stockroom</span>}
                     </div>
 
-                    <div className="bars" style={{ marginLeft: isOpen ? "100px" : "0px" }}>
-                        <HiMenuAlt3 onClick={toggle} />
-                    </div>
+                    <button className="bars" type="button" onClick={toggle} aria-label="Toggle navigation">
+                        <HiMenuAlt3 />
+                    </button>
                 </div>
                 {menu.map((item, index) => {
                     return <SidebarItem key={index} item={item} isOpen={isOpen} />
                 })}
-            </div>
-            <main style={{ paddingLeft: isOpen ? "230px" : "60px", transition: "all .5s" }}>
+            </aside>
+            <main className="main-content">
                 {children}
             </main>
         </div>

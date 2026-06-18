@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { logoutUser } from '../../services/authService';
 import { useNavigate } from 'react-router-dom';
 import { SET_LOGIN, selectName } from '../../redux/features/auth/authSlice';
+import { FiLogOut } from "react-icons/fi";
 
 
 const Header = () => {
@@ -17,16 +18,20 @@ const Header = () => {
   };
 
   return (
-    <div className="--pad header">
-      <div className="--flex-between">
-        <h3>
-          <span className="--fw-thin">Welcome, </span>
-          <span className="--color-danger">{name} </span>
-        </h3>
-        <button onClick={logout} className="--btn --btn-danger">Logout</button>
+    <header className="--pad header app-header">
+      <div className="--flex-between app-header__inner">
+        <div>
+          <span className="app-header__eyebrow">Inventory workspace</span>
+          <h3>
+            Welcome, <span className="app-header__name">{name || "there"}</span>
+          </h3>
+        </div>
+        <button onClick={logout} className="--btn --btn-danger">
+          <FiLogOut />
+          Logout
+        </button>
       </div>
-      <hr />
-    </div>
+    </header>
   )
 }
 

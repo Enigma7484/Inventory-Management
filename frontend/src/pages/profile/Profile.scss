@@ -1,33 +1,61 @@
 .profile {
   .card {
-    max-width: 700px;
+    align-items: stretch;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: minmax(220px, 0.8fr) minmax(280px, 1.2fr);
+    max-width: 820px;
+    padding: 1.8rem;
+  }
+
+  span.profile-photo {
+    align-items: center;
+    background: var(--color-surface-soft);
+    border-radius: var(--radius-sm);
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
+    overflow: hidden;
+  }
 
+  img {
+    height: 100%;
+    max-height: 34rem;
+    object-fit: cover;
+    width: 100%;
+  }
+
+  span.profile-data {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-width: 0;
+  }
+
+  span.profile-data > * {
+    border-top: 1px solid var(--color-border);
     padding: 1rem 0;
+  }
 
-    span.profile-photo {
-      text-align: center;
-    }
+  span.profile-data p {
+    margin-bottom: 0;
+  }
 
-    img {
-      width: 100%;
-      max-width: 350px;
-      padding-right: 1rem;
-      padding-left: 1rem;
-    }
-    span.profile-data {
-      margin: 0 1rem;
-    }
-    span.profile-data > * {
-      border-top: 1px solid #ccc;
-      padding: 5px 0;
-    }
+  span.profile-data b {
+    color: var(--color-muted);
+    display: inline-block;
+    min-width: 7rem;
   }
 }
 
-@media screen and (max-width: 600px) {
-  span.profile-photo {
-    margin: auto;
+@media screen and (max-width: 700px) {
+  .profile .card {
+    grid-template-columns: 1fr;
+  }
+
+  .profile span.profile-photo {
+    min-height: 24rem;
   }
 }

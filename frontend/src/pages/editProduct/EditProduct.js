@@ -41,8 +41,10 @@ const EditProduct = () => {
     };
 
     const handleImageChange = (e) => {
-        setProductImage(e.target.files[0]);
-        setImagePreview(URL.createObjectURL(e.target.files[0]));
+        const file = e.target.files?.[0];
+        if (!file) return;
+        setProductImage(file);
+        setImagePreview(URL.createObjectURL(file));
     };
 
     const saveProduct = async (e) => {
@@ -66,7 +68,13 @@ const EditProduct = () => {
     return (
         <div>
             {isLoading && <Loader />}
-            <h3 className="--mt">Edit Product</h3>
+            <div className="page-title-row">
+                <div>
+                    <span className="page-kicker">Catalog update</span>
+                    <h3>Edit Product</h3>
+                    <p>Adjust the current item details and keep stock information accurate.</p>
+                </div>
+            </div>
             <ProductForm
                 product={product}
                 productImage={productImage}
